@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %} {% endblock %}
+
+{% block title %}
+Get ethereum block 
+{% endblock %}
+
+{% block body %}
+
+{% comment %} create form that with a post method that gets no fields only submit boton {% endcomment %}
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Get last block">
+</form>
+
+{% endblock %}

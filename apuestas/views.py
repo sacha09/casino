@@ -1,17 +1,23 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from web3 import Web3
 
 # Create your views here.
-
+@csrf_exempt
 def index(request):
-    
-    block = 0
+
+    block_number = 0
+    block_hash = 0
 
     if request.method == 'POST':
-        if request.POST.get('block'):
-            w3 = Web3(Web3.HTTPProvider("https://mainnet.infura.io/v3/0f8a9b2b6c7b4d4d9c8f4a4e4c4b4e4c"))
-            block = w3.eth.blockNumber
-            return render(request, 'index.html', {'block': block})
+        w3 = Web3(Web3.HTTPProvider("https://mainnet.infura.io/v3/4eba7008234f40a89cdce13658e41c7a"))
+        block = w3.eth.getBlock("finalized")
+        block_number = block.number
+        block_hash = block.hash.hex()   
     
+    context = {
+        'block_number': block_number,
+        'block_hash': block_hash,
+    }
    
-    return render(request, 'index.html', {'block': block})
+    return render(request, 'index.html', context)

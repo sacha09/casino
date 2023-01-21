@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
-{% block head %} {% endblock %}
+{% block head %}
+
+{% endblock %}
 
 {% block title %}
 Get ethereum block 
@@ -9,9 +11,10 @@ Get ethereum block
 {% block body %}
 
 {% comment %} create form that with a post method that gets no fields only submit boton {% endcomment %}
-<form action="" method="post">
-    {% csrf_token %}
+<form action="" method="post" style="margin-left: 0.875rem;margin-top: 0.875rem;">
     <input type="submit" value="Get last block">
 </form>
+
+<p style="margin-left: 0.875rem;margin-top: 0.875rem;" >El ultimo bloque es: {{block_number}}<br>con hash: {{block_hash}}</p>
 
 {% endblock %}
